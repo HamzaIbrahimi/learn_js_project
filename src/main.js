@@ -1,5 +1,6 @@
 import FetchWrapper from "./fetch-wrapper.js";
 import { baseAPI } from "./API.js";
+import { capitalize, calculateCalories } from "./helpers.js";
 
 const formSubmit = document.querySelector("#create-form");
 formSubmit.addEventListener("submit", (e) => {
@@ -29,12 +30,22 @@ formSubmit.addEventListener("submit", (e) => {
             "beforeend",
             `<li class="card">
             <div>
-              <h3 class="name">${selected.value}</h3>
-              <div class="calories">calories</div>
+              <h3 class="name">${capitalize(selected.value)}</h3>
+              <div class="calories">${calculateCalories(
+                carbs.value,
+                protein.value,
+                fat.value
+              )} calories</div>
               <ul class="macros">
-                <li class="carbs"><div>Carbs</div><div class="value">${carbs.value}g</div></li>
-                <li class="protein"><div>Protein</div><div class="value">${protein.value}g</div></li>
-                <li class="fat"><div>Fat</div><div class="value">${fat.value}g</div></li>
+                <li class="carbs"><div>Carbs</div><div class="value">${
+                  carbs.value
+                }g</div></li>
+                <li class="protein"><div>Protein</div><div class="value">${
+                  protein.value
+                }g</div></li>
+                <li class="fat"><div>Fat</div><div class="value">${
+                  fat.value
+                }g</div></li>
               </ul>
             </div>
           </li>`
