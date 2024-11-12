@@ -1,6 +1,7 @@
 import FetchWrapper from "./fetch-wrapper.js";
 import { baseAPI } from "./API.js";
 import { capitalize, calculateCalories } from "./helpers.js";
+import "./styles.css";
 
 const formSubmit = document.querySelector("#create-form");
 formSubmit.addEventListener("submit", (e) => {
