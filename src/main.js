@@ -2,6 +2,7 @@ import FetchWrapper from "./fetch-wrapper.js";
 import { baseAPI } from "./API.js";
 import { capitalize, calculateCalories } from "./helpers.js";
 import "./styles.css";
+import snackbar from "snackbar";
 
 const formSubmit = document.querySelector("#create-form");
 formSubmit.addEventListener("submit", (e) => {
@@ -22,14 +23,10 @@ formSubmit.addEventListener("submit", (e) => {
         },
       })
       .then((data) => {
-        if (data.error) {
-          console.log("Failed Fetch");
-          return;
-        } else {
-          const foodList = document.querySelector("#food-list");
-          foodList.insertAdjacentHTML(
-            "beforeend",
-            `<li class="card">
+        const foodList = document.querySelector("#food-list");
+        foodList.insertAdjacentHTML(
+          "beforeend",
+          `<li class="card">
             <div>
               <h3 class="name">${capitalize(selected.value)}</h3>
               <div class="calories">${calculateCalories(
@@ -50,9 +47,14 @@ formSubmit.addEventListener("submit", (e) => {
               </ul>
             </div>
           </li>`
-          );
-          formSubmit.reset();
-        }
+        );
+        snackbar.show("Food added successfully");
+        formSubmit.reset();
+      })
+      .catch((error) => {
+        console.error(error);
+        snackbar.show("Some data is missing");
+        return;
       });
   }
 });
