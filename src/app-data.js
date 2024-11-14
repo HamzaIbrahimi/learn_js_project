@@ -1,33 +1,24 @@
-class AppData {
+export default class AppData {
   constructor() {
-    this.foodValueArray = [];
+    this.food = [];
   }
 
   addFood = (carbs, protein, fat) => {
-    this.foodValueArray.push({ carbs, protein, fat });
+    this.food.push({ carbs: +carbs, protein: +protein, fat: +fat });
   };
 
   getTotalCarbs = () =>
-    this.foodValueArray
+    this.food
       .map((foodItem) => foodItem.carbs)
-      .reduce((current, total) => current + total);
+      .reduce((current, total) => current + total, 0);
 
   getTotalProtein = () =>
-    this.foodValueArray
+    this.food
       .map((foodItem) => foodItem.protein)
-      .reduce((current, total) => current + total);
+      .reduce((current, total) => current + total, 0);
 
   getTotalFat = () =>
-    this.foodValueArray
+    this.food
       .map((foodItem) => foodItem.fat)
-      .reduce((current, total) => current + total);
+      .reduce((current, total) => current + total, 0);
 }
-
-const data = new AppData();
-let a1 = 1;
-let a2 = 3;
-let a3 = 2;
-for (let i = 0; i < 10; i++) {
-  data.addFood(a1, a2, a3);
-}
-console.log(data.getTotalCarbs(), data.getTotalFat(), data.getTotalProtein());
