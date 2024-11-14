@@ -1,3 +1,4 @@
+import { calculateCalories } from "./helpers";
 export default class AppData {
   constructor() {
     this.food = [];
@@ -21,4 +22,12 @@ export default class AppData {
     this.food
       .map((foodItem) => foodItem.fat)
       .reduce((current, total) => current + total, 0);
+
+  getTotalCalories = () => {
+    return calculateCalories(
+      this.getTotalCarbs(),
+      this.getTotalProtein(),
+      this.getTotalFat()
+    );
+  };
 }
