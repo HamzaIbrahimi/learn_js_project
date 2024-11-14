@@ -43,7 +43,7 @@ const renderChart = () => {
       labels: ["Carbs", "Protein", "Fat"],
       datasets: [
         {
-          label: "Data label",
+          label: "Macro Nutrients",
           data: [
             appData.getTotalCarbs(),
             appData.getTotalProtein(),
@@ -54,6 +54,8 @@ const renderChart = () => {
       ],
     },
   });
+  const totalCalories = document.querySelector("#total-calories");
+  totalCalories.textContent = appData.getTotalCalories();
 };
 
 formSubmit.addEventListener("submit", (e) => {
